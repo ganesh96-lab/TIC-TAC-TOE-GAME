@@ -1,10 +1,14 @@
 #!/usr/local/bin/bash
 
-	echo "          welcome to tic tac toe "
+echo "          welcome to tic tac toe "
 
 declare -a board
-turnCount=0
+
+#constant
 MAX_TURNS=9
+
+#VARIABLES
+turnCount=0
 user=""
 computer=""
 currentPlayer=""
@@ -25,6 +29,7 @@ function displayBoard(){
 
 }
 
+#here assign the dynamic sign to player
 function playerName (){
 	if [[ $((RANDOM%2)) -eq 0 ]]
 	then
@@ -39,7 +44,7 @@ function playerName (){
 
 	echo "computer = $computer"
 }
-
+#here assign the  current sign  user
 function toss(){
 	if [[ $((RANDOM%2)) -eq 0 ]]
 	then
@@ -49,7 +54,7 @@ function toss(){
 	fi
 	echo "$currentPlayer"
 }
-
+#here find the who is winner
 function winner() {
    diagonal=0
    column=0
@@ -59,7 +64,7 @@ function winner() {
          [[ ${board[$column]} == ${board[$column+3]} && ${board[$column+3]} ==  ${board[$column+6]} ]] || 
          [[ ${board[$diagonal]} == ${board[$diagonal+4]} && ${board[$diagonal+4]} == ${board[$diagonal+8]} ]] ||
          [[ ${board[$diagonal+2]} == ${board[$diagonal+4]} && ${board[$diagonal+4]} == ${board[$diagonal+6]} ]]
-      then  
+      then
          echo "winner=$currentPlayer"
 
          echo ""
@@ -69,7 +74,7 @@ function winner() {
    done
 }
 
-
+#here  calling the particulare user or computer function to assign its value and define tern
 function play(){
 	if [[ "$currentPlayer" = "user" ]]
 	then
@@ -83,10 +88,11 @@ function userPlay(){
 	currentPlayer="user"
 	if [[ $turnCount -lt $MAX_TURNS ]]
 	then
-		read -p "Enter position between 0 to 8: " position
+		read -p "Enter cell between 0 to 8: " position
 		if [[ "${board[$position]}" = "$position" ]]
 		then
-			board[$position]=$user	
+			#here store the user sign to choosing position
+			board[$position]=$user
 
 			((turnCount++))
 			displayBoard
@@ -105,6 +111,7 @@ function userPlay(){
 
 function computerPlay(){
 	currentPlayer="computer"
+	#here check the cuttent tern count less than 9
 	if [[ $turnCount -lt $MAX_TURNS ]]
 	then
 		position=$((RANDOM%9))

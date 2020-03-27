@@ -121,7 +121,28 @@ function computerPlay(){
 	fi
 }
 
-		playerName
-		toss
-		displayBoard
-		play
+function computerColumnWin(){
+	local symbol=$1
+	for((column=0;column<7;column=column+1))
+	do
+		if [[ ${board[$column]} == $symbol && ${board[$column+3]} == $symbol && ${board[$column+6]} == $((column+6)) ]]
+		then
+			board[$column+6]=$computer
+			checkConditions
+		elif [[ ${board[$column]} == $symbol && ${board[$column+6]} == $symbol && ${board[$column+3]} == $((column+3)) ]]
+		then
+			board[$column+3]=$computer
+			checkConditions
+		elif [[ ${board[$column+3]} == $symbol && ${board[$column+6]} == $symbol && ${board[$column]} == $column ]]
+		then
+			board[$column]=$computer
+			checkConditions
+		fi
+	done
+}
+
+computerColumnWin
+playerName
+toss
+displayBoard
+play

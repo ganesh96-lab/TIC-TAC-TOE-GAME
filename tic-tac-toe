@@ -14,4 +14,13 @@ function displayBoard(){
 		fi
 	done
 }
+function playerName(){
+	user="X"
+	computer="O"
+	echo "user=X"
+	echo "computer=O"
+}
+
+playerName
 displayBoard
+

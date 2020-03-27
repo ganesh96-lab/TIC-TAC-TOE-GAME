@@ -1,10 +1,13 @@
 #!/usr/local/bin/bash
 
-	echo "          welcome to tic tac toe "
+echo "          welcome to tic tac toe "
 
 declare -a board
-turnCount=0
+#CONSTANT
 MAX_TURNS=9
+
+#variables
+turnCount=0
 user=""
 computer=""
 currentPlayer=""
@@ -12,6 +15,7 @@ currentPlayer=""
 
 board=(0 1 2 3 4 5 6 7 8)
 
+#function for display board 
 function displayBoard(){
 
 	for (( row=0; row<=6; row=row+3 ))
@@ -33,6 +37,7 @@ function playerName (){
 		computer="O"
 	else
 		computer="X"
+
 		user="O"
 	fi
 	echo "user = $user"
@@ -50,6 +55,7 @@ function toss(){
 	echo "$currentPlayer"
 }
 
+#function is to check who is winner
 function winner() {
    diagonal=0
    column=0
@@ -69,7 +75,7 @@ function winner() {
    done
 }
 
-
+#function to call user plaing turn and computer playing turn
 function play(){
 	if [[ "$currentPlayer" = "user" ]]
 	then
@@ -81,11 +87,13 @@ function play(){
 
 function userPlay(){
 	currentPlayer="user"
+	#here check the user tern is less than 9
 	if [[ $turnCount -lt $MAX_TURNS ]]
 	then
 		read -p "Enter position between 0 to 8: " position
 		if [[ "${board[$position]}" = "$position" ]]
 		then
+			#here store the users current sign to choosen positipn
 			board[$position]=$user	
 
 			((turnCount++))
@@ -98,7 +106,6 @@ function userPlay(){
 		computerPlay
 	else
 		echo "Game tie"
-		echo ""
 		exit
 	fi
 }
@@ -111,6 +118,7 @@ function computerPlay(){
 		if [[ "${board[$position]}" = "$position" ]]
 		then
 			echo "computer's turn:"
+			#here store the computer sign to positon
 			board[$position]=$computer
 			((turnCount++))
 

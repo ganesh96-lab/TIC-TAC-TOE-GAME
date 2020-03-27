@@ -2,7 +2,7 @@
 
 	echo "          welcome to tic tac toe "
 
- declare -a board
+declare -a board
 turnCount=0
 MAX_TURNS=9
 user=""
@@ -13,27 +13,30 @@ currentPlayer=""
 board=(0 1 2 3 4 5 6 7 8)
 
 function displayBoard(){
-for (( row=0; row<=6; row=row+3 ))
-do
-	echo " ${board[$row]} | ${board[$row+1]} | ${board[$row+2]}"
-	if [ $row -lt 6 ]
-	then
-		echo "-----------"
-	fi 
-done
-echo ""
+
+	for (( row=0; row<=6; row=row+3 ))
+	do
+		echo " ${board[$row]} | ${board[$row+1]} | ${board[$row+2]}"
+		if [ $row -lt 6 ]
+		then
+			echo "-----------"
+		fi 
+	done
+
 }
 
 function playerName (){
 	if [[ $((RANDOM%2)) -eq 0 ]]
 	then
 		user="X"
+
 		computer="O"
 	else
 		computer="X"
 		user="O"
 	fi
 	echo "user = $user"
+
 	echo "computer = $computer"
 }
 
@@ -58,6 +61,7 @@ function winner() {
          [[ ${board[$diagonal+2]} == ${board[$diagonal+4]} && ${board[$diagonal+4]} == ${board[$diagonal+6]} ]]
       then  
          echo "winner=$currentPlayer"
+
          echo ""
          exit
       fi
@@ -83,6 +87,7 @@ function userPlay(){
 		if [[ "${board[$position]}" = "$position" ]]
 		then
 			board[$position]=$user	
+
 			((turnCount++))
 			displayBoard
 		else
@@ -92,7 +97,7 @@ function userPlay(){
 		winner
 		computerPlay
 	else
-		echo "Game tie !!"
+		echo "Game tie"
 		echo ""
 		exit
 	fi
@@ -108,6 +113,7 @@ function computerPlay(){
 			echo "computer's turn:"
 			board[$position]=$computer
 			((turnCount++))
+
 			displayBoard
 		else
 			computerPlay
@@ -115,8 +121,8 @@ function computerPlay(){
 		winner
 		userPlay
 	else
-		echo "Game tie !!"
-		echo ""
+		echo "Game tie"
+
 		exit
 	fi
 }

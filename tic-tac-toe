@@ -44,7 +44,7 @@ function playerName (){
 
 	echo "computer = $computer"
 }
-#here assign the  current sign  user
+#here assign the  current sign  player decide who play first
 function toss(){
 	if [[ $((RANDOM%2)) -eq 0 ]]
 	then

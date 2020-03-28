@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/bash -x
 
 echo "          welcome to tic tac toe "
 
 declare -a board
 
-#constant
+#CONSTANTA
 MAX_TURNS=9
 
 #VARIABLES
